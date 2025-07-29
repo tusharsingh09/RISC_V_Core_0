@@ -1,0 +1,3 @@
+Supported instruction:
+R-Type: all execpt - slt, sltu
+I-Type: 
