@@ -21,6 +21,9 @@ always@(*) begin
         3'h5: alu_control = 3'b101; // SRL
         endcase
     end
+    else if (opcode == 7'b1100011) begin
+        alu_control = (funct3 == 3'h0 || funct3 == 3'h1)?(3'b001):(3'h0);
+    end
 end
 
 endmodule

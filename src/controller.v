@@ -14,7 +14,7 @@ module Controller(
     output reg [2:0] ImmSrc,
     output reg RegWrite,
     output reg MemWrite,
-    output wire Branch
+    output reg Branch
 );
 
 always@(*) begin
@@ -26,13 +26,23 @@ always@(*) begin
         MemWrite = 1'b0;
         ResultSrc = 1'b0;
     end
-    7'b0010011: begin
+    7'b0010011: begin // I-Type
         ImmSrc = 3'b000; 
         RegWrite = 1'b1;
         ALUSrc = 1'b1;
         MemWrite = 1'b0;
         ResultSrc = 1'b0;
         PCSrc = 1'b0;
+    end
+    7'b1100011: begin // B-Type
+        RegWrite = 1'b0;
+        MemWrite = 1'b0;
+        ImmSrc = 3'b010;
+        ALUSrc = 1'b0;
+        // separate beq and bne
+        if(funct3 == 3'h0) PCSrc = alu_zero; // beq
+        else if(funct3 == 3'h1) PCSrc = ~alu_zero; // bne
+        ResultSrc = 1'b0;
     end
     endcase
 end

@@ -10,7 +10,7 @@ module InstructionMemory(
 reg [31:0] memory [2**16-1:0];
 assign instruction = memory[addr];
 
-initial $readmemh("../examples/instructions.hex", memory, 0, 2);
+initial $readmemh("../examples/instructions.hex", memory, 0, 5);
 
 endmodule
 
