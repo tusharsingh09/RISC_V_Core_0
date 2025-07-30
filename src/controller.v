@@ -44,6 +44,14 @@ always@(*) begin
         else if(funct3 == 3'h1) PCSrc = ~alu_zero; // bne
         ResultSrc = 1'b0;
     end
+    7'b1101111: begin // jal
+        RegWrite = 1'b0;
+        MemWrite = 1'b0;
+        PCSrc = 1'b1;
+        ImmSrc = 3'b100;
+        ALUSrc = 1'b0;
+        ResultSrc = 1'b0;
+    end
     endcase
 end
 

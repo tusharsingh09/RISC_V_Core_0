@@ -39,7 +39,7 @@ wire [31:0] Result; // goes to wd3 (register file writing data)
 // wanna use only LSB 16 bits of sigimm since pc in 16 bti
 MUX2 #(.size(16)) pc_mux(
     .I0(PC[15:0]+16'd4),
-    .I1(PC[15:0]+16'd4+SigmImm*4),
+    .I1(PC[15:0]+SigmImm), // sigimm pehls se hi address dega, to direct add krenge
     .s(PCSrc),
     .out(PC_Next)
 );

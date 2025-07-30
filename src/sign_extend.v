@@ -21,7 +21,9 @@ always@(*) begin
             out_t = { {19{instruction[31]}}, instruction[31], instruction[30:25], instruction[11:8], instruction[7], 1'b0 };
         3'b011: // U-type
             out_t = { instruction[31:12], 12'b0 };
-        // 3'b100: // J-type
+        3'b100: // J-type
+            out_t = { {10{instruction[20]}} ,instruction[20], instruction[19:12], instruction[20], instruction[30:21], 1'b0 };
+
     endcase
 end
 

@@ -1,3 +1,4 @@
 Supported instruction:
 R-Type: all execpt - slt, sltu
-I-Type: 
+I-Type: all excepy - slti, sltiu
+B-Type: beq, bne
